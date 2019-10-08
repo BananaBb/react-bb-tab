@@ -16,7 +16,7 @@ class BbTabWrap extends Component {
     });
 
     return (
-      <div className="bb-tab-wrapper">
+      <div className="bb-tab-wrap">
         <div className="bb-tab-bar">
           {tabBar}
         </div>
@@ -28,16 +28,14 @@ class BbTabWrap extends Component {
   }
 }
 
-class BbTab extends BbTabWrap {
+class BbTab extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    console.log(this.props)
-    let keySel = (BbTabWrap.active === this.props.id) ? "selected" : ""
     return (
-      <div className={keySel} key={"content-" + this.props.id}>
+      <div className="" key={"content-" + this.props.id}>
         {this.props.children}
       </div>
     )
