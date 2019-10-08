@@ -2,30 +2,42 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 
-class BbTabWrapper extends Component {
+class BbTabWrap extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.active = this.props.defaultKey;
   }
 
   render() {
+    let keySel = ""
+    const tabBar = React.Children.map(this.props.children, child => {
+      keySel = (this.active === child.props.id) ? "selected" : ""
+      return (<div className={keySel} key={child.props.key}>{child.props.name}</div>)
+    });
+
     return (
-      <div>
-        {this.props.children}
+      <div className="bb-tab-wrapper">
+        <div className="bb-tab-bar">
+          {tabBar}
+        </div>
+        <div className="bb-tab-content">
+          {this.props.children}
+        </div>
       </div>
     )
   }
 }
 
-class BbTab extends BbTabWrapper {
+class BbTab extends BbTabWrap {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   render() {
+    console.log(this.props)
+    let keySel = (BbTabWrap.active === this.props.id) ? "selected" : ""
     return (
-      <div>
+      <div className={keySel} key={"content-" + this.props.id}>
         {this.props.children}
       </div>
     )
@@ -33,6 +45,6 @@ class BbTab extends BbTabWrapper {
 }
 
 export {
-  BbTabWrapper,
+  BbTabWrap,
   BbTab
 }
