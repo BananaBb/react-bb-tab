@@ -6,6 +6,7 @@ export default class App extends Component {
     return (
     	<BbTabWrap
     		defaultKey="1"
+        className="hello"
     	>
       	<BbTab name="tab 1" id="1">Hello World</BbTab>
       	<BbTab name="tab 2" id="2">123456</BbTab>
