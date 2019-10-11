@@ -17,8 +17,9 @@ import React, { Component } from 'react'
 import {BbTabWrap, BbTab} from 'react-bb-tab'
 
 class Example extends Component {
-  sayHello(e) {
-    alert("Tab ID:" + e.target.id)
+  sayHello(e, tar) {
+    console.log("Tab ID:" + tar.id);
+    console.log("Page:" + tar.page);
   }
 
   render () {
@@ -28,7 +29,7 @@ class Example extends Component {
         className="hello"
         tabFunc={this.sayHello}
       >
-        <BbTab name="tab 1" id="1">Hello World</BbTab>
+        <BbTab name="tab 1" id="1" page="10">Hello World</BbTab>
         <BbTab name="tab 2" id="2">123456</BbTab>
         <BbTab name="tab 3" id="3">78910JQK</BbTab>
       </BbTabWrap>

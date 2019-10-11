@@ -11,11 +11,11 @@ class BbTabWrap extends Component {
     this.clickToSelect = this.clickToSelect.bind(this);
   }
 
-  clickToSelect(e, func) {
+  clickToSelect(e, tar, func) {
     e.preventDefault()
     this.setState({selected: e.target.id})
     if (func && func instanceof Function)
-      func(e)
+      func(e, tar)
   }
 
   render() {
@@ -26,9 +26,9 @@ class BbTabWrap extends Component {
         <a 
           href="./"
           className={(this.state.selected == child.props.id) ? "selected" : "hide"} 
-          onClick={(e)=>this.clickToSelect(e, this.props.tabFunc)} 
+          onClick={(e)=>this.clickToSelect(e, child.props, this.props.tabFunc)} 
           key={child.props.id} 
-          id={child.props.id}
+          {...child.props}
         >
           {child.props.name}
         </a>
