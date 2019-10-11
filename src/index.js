@@ -21,12 +21,14 @@ class BbTabWrap extends Component {
   render() {
     let keySel = ""
     let tabBar = []
+    let tabClass = (this.props.className)? this.props.className : ""
     const tabContent = React.Children.map(this.props.children, child => {
       tabBar.push(
         <a 
           href="./"
           className={(this.state.selected == child.props.id) ? "selected" : "hide"} 
           onClick={(e)=>this.clickToSelect(e, child.props, this.props.tabFunc)} 
+          key={child.props.id}
           {...child.props}
         >
           {child.props.name}
@@ -40,7 +42,7 @@ class BbTabWrap extends Component {
     });
 
     return (
-      <div className={"bb-tab-wrap " + this.props.className}>
+      <div className={"bb-tab-wrap " + tabClass}>
         <div className="bb-tab-bar"><div className="bb-tab-flex">{tabBar}</div></div>
         <div className="bb-tab-content">{tabContent}</div>
       </div>
@@ -56,7 +58,7 @@ class BbTab extends Component {
 
   render() {
     return (
-      <div className={this.props.className} key={"content-" + this.props.id}>
+      <div className={this.props.className} id={"content-" + this.props.id} key={"content-" + this.props.id}>
         {this.props.children}
       </div>
     )

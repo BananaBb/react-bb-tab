@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import {BbTabWrap, BbTab} from 'react-bb-tab'
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.tabs = [
+      "tab 1",
+      "tab 2",
+      "tab 3"
+    ];
+  }
+
   sayHello(e, tar) {
     console.log("Tab ID:" + tar.id);
     console.log("Page:" + tar.page);
@@ -10,13 +19,17 @@ export default class App extends Component {
   render () {
     return (
       <BbTabWrap
-        defaultKey="1"
+        defaultKey="0"
         className="hello"
         tabFunc={this.sayHello}
       >
-        <BbTab name="tab 1" id="1" page="10">Hello World</BbTab>
-        <BbTab name="tab 2" id="2">123456</BbTab>
-        <BbTab name="tab 3" id="3">78910JQK</BbTab>
+      {this.tabs.map((tab, idx) => {
+        return (
+          <BbTab name={tab} key={idx} id={idx} page={idx}>
+            {tab}
+          </BbTab>
+        )
+      })}
       </BbTabWrap>
     )
   }
