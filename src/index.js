@@ -27,7 +27,6 @@ class BbTabWrap extends Component {
           href="./"
           className={(this.state.selected == child.props.id) ? "selected" : "hide"} 
           onClick={(e)=>this.clickToSelect(e, child.props, this.props.tabFunc)} 
-          key={child.props.id} 
           {...child.props}
         >
           {child.props.name}
